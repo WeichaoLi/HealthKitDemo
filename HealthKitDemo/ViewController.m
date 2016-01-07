@@ -31,7 +31,8 @@
         NSSet *sampleTypes = [NSSet setWithObjects:[HKWorkoutType workoutType],
                               [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned],
                               [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning],
-                              [HKQuantityType quantityTypeForIdentifier:unitIdentifier],
+                              [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],
+                              [HKCategoryType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis],
                               nil];
         
         [healthStore requestAuthorizationToShareTypes:sampleTypes
@@ -48,13 +49,37 @@
                                                                           startDate:[NSDate date]
                                                                             endDate:[NSDate date]];
         
-        [healthStore saveObject:quantitySample withCompletion:^(BOOL success, NSError * _Nullable error) {
-            if (success) {
-                NSLog(@"更新步数成功");
-            }
-        }];
+        NSDate *start = [NSDate date];
+        NSDate *end = [NSDate dateWithTimeIntervalSince1970:[[NSDate date] timeIntervalSince1970] + 60*60*2];
+        NSLog(@"%@", start);
+        NSLog(@"%@", end);
+        
+        
+        NSDictionary *metadata = @{HKMetadataKeyTimeZone: [NSTimeZone systemTimeZone].name};
+        HKCategorySample *categorySample = [HKCategorySample categorySampleWithType:[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]
+                                                                              value:HKCategoryValueSleepAnalysisAsleep
+                                                                          startDate:start
+                                                                            endDate:end
+                                                                            metadata:metadata];
+//        [healthStore deleteObject:categorySample withCompletion:^(BOOL success, NSError * _Nullable error) {
+//            if (success) {
+//                NSLog(@"删除成功");
+//            }
+//        }];
+//        
+//        [healthStore saveObjects:@[quantitySample, categorySample] withCompletion:^(BOOL success, NSError * _Nullable error) {
+//            if (success) {
+//                NSLog(@"更新成功");
+//            }else {
+//                NSLog(@"更新失败：%@", error);
+//            }
+//        }];
     }
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"===");
 }
 
 - (void)didReceiveMemoryWarning {
