@@ -191,7 +191,7 @@
     HKSampleQuery *query = [[HKSampleQuery alloc] initWithSampleType:sampleType predicate:predicate limit:0 sortDescriptors:nil resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
         if (!results) {
             NSLog(@"An error occured fetching the user's tracked food. In your app, try to handle this gracefully. The error was: %@.", error);
-            abort();
+//            abort();
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -211,7 +211,7 @@
     HKSourceQuery *sourceQuery = [[HKSourceQuery alloc] initWithSampleType:type samplePredicate:predicate completionHandler:^(HKSourceQuery * _Nonnull query, NSSet<HKSource *> * _Nullable sources, NSError * _Nullable error) {
         if (!sources) {
             NSLog(@"An error occured fetching the user's tracked food. In your app, try to handle this gracefully. The error was: %@.", error);
-            abort();
+//            abort();
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

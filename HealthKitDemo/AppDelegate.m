@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "HealthKitDemo-swift.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+//    [Test pp];
+//    Test *t = [[Test alloc] init];
     return YES;
 }
 

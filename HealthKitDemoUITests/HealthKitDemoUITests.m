@@ -35,6 +35,12 @@
 - (void)testExample {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationPortrait;
+    
+    XCUIElement *window = [[[[XCUIApplication alloc] init] childrenMatchingType:XCUIElementTypeWindow] elementBoundByIndex:0];
+    [window tap];
+    [window tap];
+    
 }
 
 @end

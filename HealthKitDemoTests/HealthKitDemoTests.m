@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ViewController.h"
 
 @interface HealthKitDemoTests : XCTestCase
 
@@ -34,6 +35,10 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+- (void)test {
+    view
 }
 
 @end
